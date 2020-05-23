@@ -353,7 +353,7 @@ public class ConnectDialog extends MageDialog {
         });
         panelFlag.add(btnFlagSearch);
 
-        btnFindMain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flags/de.png"))); // NOI18N
+        btnFindMain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flags/world.png"))); // NOI18N
         btnFindMain.setText("X");
         btnFindMain.setToolTipText("Connect to xmage.de (first Europe server, most popular, registration needs)");
         btnFindMain.setAlignmentY(0.0F);
@@ -367,8 +367,8 @@ public class ConnectDialog extends MageDialog {
             }
         });
 
-        btnFindLocal.setText("LOCAL, AI");
-        btnFindLocal.setToolTipText("Connect to localhost, AI enabled (run local server from launcher)");
+        btnFindLocal.setText("TIM");
+        btnFindLocal.setToolTipText("Connect to Tims server");
         btnFindLocal.setAlignmentY(0.0F);
         btnFindLocal.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnFindLocal.setMargin(new java.awt.Insets(2, 2, 2, 2));
@@ -391,7 +391,7 @@ public class ConnectDialog extends MageDialog {
             }
         });
 
-        btnFindUs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flags/us.png"))); // NOI18N
+        btnFindUs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flags/world.png"))); // NOI18N
         btnFindUs.setText("US");
         btnFindUs.setToolTipText("Connect to us.xmage.today (USA, use any username without registration)");
         btnFindUs.setAlignmentY(0.0F);
@@ -412,9 +412,9 @@ public class ConnectDialog extends MageDialog {
             }
         });
 
-        btnFindEU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flags/europeanunion.png"))); // NOI18N
-        btnFindEU.setText("EU");
-        btnFindEU.setToolTipText("Connect to eu.xmage.today (second Europe server, use any username without registration)");
+        btnFindEU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flags/world.png"))); // NOI18N
+        btnFindEU.setText("LOCAL");
+        btnFindEU.setToolTipText("Connect to localhost");
         btnFindEU.setAlignmentY(0.0F);
         btnFindEU.setMargin(new java.awt.Insets(2, 2, 2, 2));
         btnFindEU.setMaximumSize(new java.awt.Dimension(42, 23));
@@ -825,7 +825,7 @@ public class ConnectDialog extends MageDialog {
     }//GEN-LAST:event_btnFindMainActionPerformed
 
     private void btnFindEUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindEUActionPerformed
-        setServerSettings("eu.xmage.today", "17171", false);
+        setServerSettings("localhost", "17171", false);
     }//GEN-LAST:event_btnFindEUActionPerformed
 
     private void btnFindUsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindUsActionPerformed
@@ -837,7 +837,7 @@ public class ConnectDialog extends MageDialog {
     }//GEN-LAST:event_btnFindBetaActionPerformed
 
     private void btnFindLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindLocalActionPerformed
-        setServerSettings("localhost", "17171", false);
+        setServerSettings("autarch.uber.space", "41840", false);
     }//GEN-LAST:event_btnFindLocalActionPerformed
 
     private void btnFindOtherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindOtherActionPerformed

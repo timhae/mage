@@ -27,7 +27,7 @@ public final class CountryUtil {
     public static ImageIcon getCountryFlagIcon(String countryCode) {
         ImageIcon flagIcon = FLAG_ICON_CACHE.get(countryCode);
         if (flagIcon == null) {
-            Image flagImage = ImageHelper.getImageFromResources("/flags/" + countryCode + (countryCode.endsWith(".png") ? "" : ".png"));
+            Image flagImage = ImageHelper.getImageFromResources("/flags/world.png");
             if (flagImage != null) {
                 if (GUISizeHelper.flagHeight > 11) {
                     int width = Math.round(GUISizeHelper.flagHeight * flagImage.getWidth(null) / flagImage.getHeight(null));
@@ -49,7 +49,7 @@ public final class CountryUtil {
 
     public static ImageIcon getCountryFlagIconSize(String countryCode, int height) {
         ImageIcon flagIcon = null;
-        Image flagImage = ImageHelper.getImageFromResources("/flags/" + countryCode + (countryCode.endsWith(".png") ? "" : ".png"));
+        Image flagImage = ImageHelper.getImageFromResources("/flags/world.png");
         if (flagImage != null) {
 
             if (height > 11) {

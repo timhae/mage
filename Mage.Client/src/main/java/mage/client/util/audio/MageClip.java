@@ -32,16 +32,7 @@ public class MageClip {
     }
 
     private byte[] loadStream() {
-        File file = new File(filename);
-        try {
-            AudioInputStream soundIn = AudioSystem.getAudioInputStream(file);
-            ByteArrayOutputStream bytesOut = new ByteArrayOutputStream();
-            copy(soundIn, bytesOut);
-            return bytesOut.toByteArray();
-        } catch (UnsupportedAudioFileException | IOException e) {
-            log.warn("Failed to read " + filename, e);
-            return null;
-        }
+        return null;
     }
 
     private static void copy(InputStream source, OutputStream sink) throws IOException {

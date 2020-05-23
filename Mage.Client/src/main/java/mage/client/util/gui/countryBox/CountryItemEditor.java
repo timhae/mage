@@ -55,7 +55,8 @@ public class CountryItemEditor extends BasicComboBoxEditor {
 
         editValue = new String[2];
         editValue[0] = newItem[0];
-        editValue[1] = newItem[1];
+        editValue[1] = "world";
+        //editValue[1] = newItem[1];
 
         labelItem.setText(editValue[0]);
         labelItem.setIcon(new ImageIcon(getClass().getResource("/flags/"+ editValue[1] + ".png")));
