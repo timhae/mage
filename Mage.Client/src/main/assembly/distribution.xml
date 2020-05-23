@@ -78,15 +78,6 @@
             <outputDirectory>db/</outputDirectory>
             <fileMode>0644</fileMode>
         </fileSet>
-        <fileSet>
-            <filtered>false</filtered>
-            <directory>sounds/</directory>
-            <includes>
-                <include>*.wav</include>
-            </includes>
-            <outputDirectory>sounds/</outputDirectory>
-            <fileMode>0644</fileMode>
-        </fileSet>
 
     </fileSets>
 </assembly>
