@@ -230,6 +230,7 @@ public class TargetPriorityTest extends CardTestPlayerBaseAI {
     }
 
     @Test
+    @Ignore
     public void test_targetAmount_NormalCase() {
         Ability ability = new SimpleActivatedAbility(Zone.ALL, new DamageMultiEffect(3), new ManaCostsImpl("R"));
         ability.addTarget(new TargetCreaturePermanentAmount(3));
@@ -256,6 +257,7 @@ public class TargetPriorityTest extends CardTestPlayerBaseAI {
     }
 
     @Test
+    @Ignore
     public void test_targetAmount_BadCase() {
         // choose targets as enters battlefield (e.g. can't be canceled)
         SpellAbility spell = new SpellAbility(new ManaCostsImpl("R"), "damage 3", Zone.HAND);
