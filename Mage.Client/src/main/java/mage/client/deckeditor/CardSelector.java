@@ -10,7 +10,6 @@ import mage.ObjectColor;
 import mage.cards.Card;
 import mage.cards.ExpansionSet;
 import mage.cards.Sets;
-import mage.cards.decks.PennyDreadfulLegalityUtil;
 import mage.cards.repository.*;
 import mage.client.MageFrame;
 import mage.client.cards.*;
@@ -38,8 +37,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 import java.util.Map.Entry;
 
 import static mage.client.dialog.PreferencesDialog.*;
@@ -300,7 +299,6 @@ public class CardSelector extends javax.swing.JPanel implements ComponentListene
         criteria.white(this.tbWhite.isSelected());
         criteria.colorless(this.tbColorless.isSelected());
 
-        // if you add new type filter then sync it with CardType
         if (this.tbLand.isSelected()) {
             criteria.types(CardType.LAND);
         }
@@ -422,10 +420,6 @@ public class CardSelector extends javax.swing.JPanel implements ComponentListene
         try {
             java.util.List<Card> filteredCards = new ArrayList<>();
 
-            if (chkPennyDreadful.isSelected() && pdAllowed.isEmpty()) {
-                pdAllowed.putAll(PennyDreadfulLegalityUtil.getLegalCardList());
-            }
-
             if (limited) {
                 for (Card card : cards) {
                     if (filter.match(card, null)) {
@@ -437,11 +431,6 @@ public class CardSelector extends javax.swing.JPanel implements ComponentListene
                 for (CardInfo cardInfo : foundCards) {
                     Card card = cardInfo.getMockCard();
                     if (filter.match(card, null)) {
-                        if (chkPennyDreadful.isSelected()) {
-                            if (!pdAllowed.containsKey(card.getName())) {
-                                continue;
-                            }
-                        }
                         filteredCards.add(card);
                     }
                 }
@@ -504,7 +493,6 @@ public class CardSelector extends javax.swing.JPanel implements ComponentListene
         cbExpansionSet = new javax.swing.JComboBox<>();
         btnExpansionSearch = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
-        chkPennyDreadful = new javax.swing.JCheckBox();
         btnBooster = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
         tbTypes = new javax.swing.JToolBar();
@@ -681,18 +669,6 @@ public class CardSelector extends javax.swing.JPanel implements ComponentListene
         });
         tbColor.add(btnExpansionSearch);
         tbColor.add(jSeparator2);
-
-        chkPennyDreadful.setText("Penny Dreadful Only");
-        chkPennyDreadful.setToolTipText("Will only allow Penny Dreadful legal cards to be shown.");
-        chkPennyDreadful.setFocusable(false);
-        chkPennyDreadful.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        chkPennyDreadful.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        chkPennyDreadful.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkPilesActionPerformed(evt);
-            }
-        });
-        tbColor.add(chkPennyDreadful);
 
         btnBooster.setText("Open Booster");
         btnBooster.setToolTipText("(CURRENTLY NOT WORKING) Generates a booster of the selected set and adds the cards to the card selector.");
@@ -1497,7 +1473,6 @@ public class CardSelector extends javax.swing.JPanel implements ComponentListene
     private javax.swing.JComboBox<String> cbExpansionSet;
     private javax.swing.JComboBox<SortBy> cbSortBy;
     private javax.swing.JCheckBox chkNames;
-    private javax.swing.JCheckBox chkPennyDreadful;
     private javax.swing.JCheckBox chkPiles;
     private javax.swing.JCheckBox chkRules;
     private javax.swing.JCheckBox chkTypes;

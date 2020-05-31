@@ -201,7 +201,6 @@ public class MageFrame extends javax.swing.JFrame implements MageClient {
         config.setArchiveDetector(new TArchiveDetector("zip"));
         config.setAccessPreference(FsAccessOption.STORE, true);
         try {
-            UIManager.put("desktop", new Color(0, 0, 0, 0));
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
             //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             // stop JSplitPane from eating F6 and F8 or any other function keys
@@ -272,7 +271,6 @@ public class MageFrame extends javax.swing.JFrame implements MageClient {
 
         addTooltipContainer();
         setBackground();
-        addMageLabel();
         setAppIcon();
         MageTray.instance.install();
 
@@ -284,6 +282,7 @@ public class MageFrame extends javax.swing.JFrame implements MageClient {
                 int width = ((JComponent) e.getSource()).getWidth();
                 int height = ((JComponent) e.getSource()).getHeight();
                 SettingsManager.instance.setScreenWidthAndHeight(width, height);
+                backgroundPane.setSize(width, height);
 
                 updateCurrentFrameSize();
 
@@ -443,31 +442,14 @@ public class MageFrame extends javax.swing.JFrame implements MageClient {
     }
 
     private void setBackground() {
-        if (liteMode || grayMode) {
-            return;
-        }
-    }
-
-    public static boolean isChrismasTime(Date currentTime) {
-        // from december 15 to january 15
-        Calendar cal = new GregorianCalendar();
-        cal.setTime(currentTime);
-
-        int currentYear = cal.get(Calendar.YEAR);
-        if (cal.get(Calendar.MONTH) == Calendar.JANUARY) {
-            currentYear = currentYear - 1;
-        }
-
-        Date chrisFrom = new GregorianCalendar(currentYear, Calendar.DECEMBER, 15).getTime();
-        Date chrisTo = new GregorianCalendar(currentYear + 1, Calendar.JANUARY, 15 + 1).getTime(); // end of the 15 day
-
-        return ((currentTime.equals(chrisFrom) || currentTime.after(chrisFrom))
-                && currentTime.before(chrisTo));
-    }
-
-    private void addMageLabel() {
-        if (liteMode || grayMode) {
-            return;
+        String filename = "/background.png";
+        try {
+            InputStream is = this.getClass().getResourceAsStream(filename);
+            BufferedImage background = ImageIO.read(is);
+            backgroundPane = new ImagePanel(background, ImagePanelStyle.SCALED);
+            desktopPane.add(backgroundPane, JLayeredPane.DEFAULT_LAYER);
+        } catch (IOException e) {
+            LOGGER.fatal("Error while setting background.", e);
         }
     }
 
@@ -1244,16 +1226,6 @@ public class MageFrame extends javax.swing.JFrame implements MageClient {
                 }
                 if (arg.startsWith(DEBUG_ARG)) {
                     debugMode = true;
-                }
-            }
-            if (!liteMode) {
-                final SplashScreen splash = SplashScreen.getSplashScreen();
-                if (splash != null) {
-                    Graphics2D g = splash.createGraphics();
-                    if (g != null) {
-                        renderSplashFrame(g);
-                    }
-                    splash.update();
                 }
             }
             instance = new MageFrame();

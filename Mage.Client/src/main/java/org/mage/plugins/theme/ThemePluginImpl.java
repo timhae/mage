@@ -61,22 +61,7 @@ public class ThemePluginImpl implements ThemePlugin {
     public void applyInGame(Map<String, JComponent> ui) {
         BufferedImage backgroundImage;
         try {
-            if (PreferencesDialog.getCachedValue(PreferencesDialog.KEY_BATTLEFIELD_IMAGE_DEFAULT, "true").equals("true")) {
-                backgroundImage = loadbuffer_default();
-            } else if (PreferencesDialog.getCachedValue(PreferencesDialog.KEY_BATTLEFIELD_IMAGE_RANDOM, "true").equals("true")) {
-                backgroundImage = loadbuffer_random();
-            } else if (PreferencesDialog.getCachedValue(PreferencesDialog.KEY_BATTLEFIELD_IMAGE, "") != null) {
-                backgroundImage = loadbuffer_selected();
-            } else {
-                backgroundImage = loadbuffer_default();
-            }
-
-            if (backgroundImage == null) {
-                backgroundImage = loadbuffer_default();
-            }
-            if (backgroundImage == null) {
-                throw new FileNotFoundException("Couldn't find in resources.");
-            }
+            backgroundImage = loadbuffer_default();
 
             if (ui.containsKey("gamePanel") && ui.containsKey("jLayeredPane")) {
                 ImagePanel bgPanel = new ImagePanel(backgroundImage, ImagePanelStyle.TILED);
@@ -99,38 +84,12 @@ public class ThemePluginImpl implements ThemePlugin {
         }
     }
 
-    // Sets background for in-battle
-    // loadbuffer_default - Only apply theme background if no custom user background set
     private BufferedImage loadbuffer_default() throws IOException {
+        String filename = "/background.png";
         BufferedImage res;
         InputStream is = this.getClass().getResourceAsStream(PreferencesDialog.getCurrentTheme().getBattleBackgroundPath());
         res = ImageIO.read(is);
         return res;
-    }
-
-    private BufferedImage loadbuffer_random() throws IOException {
-        BufferedImage res;
-        if (loadimages()) {
-            int it = (int) Math.abs(Math.random() * (flist.getItemCount()));
-            String filename = BackgroundDir + flist.getItem(it);
-            res = ImageIO.read(new File(filename));
-            return res;
-        }
-        return null;
-    }
-
-    private BufferedImage loadbuffer_selected() throws IOException {
-        BufferedImage res;
-        String path = PreferencesDialog.getCachedValue(PreferencesDialog.KEY_BATTLEFIELD_IMAGE, "");
-        if (path != null && !path.isEmpty()) {
-            try {
-                res = ImageIO.read(new File(path));
-                return res;
-            } catch (Exception e) {
-                res = null;
-            }
-        }
-        return null;
     }
 
     public JComponent updateTable(Map<String, JComponent> ui) {
@@ -146,44 +105,43 @@ public class ThemePluginImpl implements ThemePlugin {
         return bgPanel;
     }
 
-    // Sets background for logged in user for tables/deck editor/card viewer/etc
     private synchronized ImagePanel createImagePanelInstance() {
         if (background == null) {
-            try {
-                if (PreferencesDialog.getCachedValue(PreferencesDialog.KEY_BACKGROUND_IMAGE_DEFAULT, "true").equals("true")) {
-                    InputStream is = this.getClass().getResourceAsStream(PreferencesDialog.getCurrentTheme().getBackgroundPath());
-                    if (is == null) {
-                        throw new FileNotFoundException("Couldn't find " + PreferencesDialog.getCurrentTheme().getBackgroundPath() + " in resources.");
-                    }
-                    background = ImageIO.read(is);
-                } else {
-                    String path = PreferencesDialog.getCachedValue(PreferencesDialog.KEY_BACKGROUND_IMAGE, "");
-                    if (path != null && !path.isEmpty()) {
-                        try {
-                            File f = new File(path);
-                            if (f != null) {
-                                background = ImageIO.read(f);
+                String filename = "/background.png";
+                try {
+                    if (PreferencesDialog.getCachedValue(PreferencesDialog.KEY_BACKGROUND_IMAGE_DEFAULT, "true").equals("true")) {
+                        InputStream is = this.getClass().getResourceAsStream(filename);
+                        if (is == null) {
+                            throw new FileNotFoundException("Couldn't find " + filename + " in resources.");
+                        }
+                        background = ImageIO.read(is);
+                    } else {
+                        String path = PreferencesDialog.getCachedValue(PreferencesDialog.KEY_BACKGROUND_IMAGE, "");
+                        if (path != null && !path.isEmpty()) {
+                            try {
+                                File f = new File(path);
+                                if (f != null) {
+                                    background = ImageIO.read(f);
+                                }
+                            } catch (Exception e) {
+                                background = null;
                             }
-                        } catch (Exception e) {
-                            background = null;
                         }
                     }
-                }
-                if (background == null) {
-                    String filename = "/background/background.png";
-                    InputStream is = this.getClass().getResourceAsStream(filename);
-                    if (is == null) {
-                        throw new FileNotFoundException("Couldn't find " + filename + " in resources.");
+                    if (background == null) {
+                        InputStream is = this.getClass().getResourceAsStream(filename);
+                        if (is == null) {
+                            throw new FileNotFoundException("Couldn't find " + filename + " in resources.");
+                        }
+                        background = ImageIO.read(is);
                     }
-                    background = ImageIO.read(is);
                     if (background == null) {
                         throw new FileNotFoundException("Couldn't find " + filename + " in resources.");
                     }
+                } catch (Exception e) {
+                    log.error(e.getMessage(), e);
+                    return null;
                 }
-            } catch (Exception e) {
-                log.error(e.getMessage(), e);
-                return null;
-            }
         }
         return new ImagePanel(background, ImagePanelStyle.SCALED);
     }

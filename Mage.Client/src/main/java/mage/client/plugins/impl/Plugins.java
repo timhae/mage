@@ -78,17 +78,11 @@ public enum Plugins implements MagePlugins {
 
     @Override
     public void updateGamePanel(Map<String, JComponent> ui) {
-        if (MageFrame.isLite() || MageFrame.isGray() || themePlugin == null) {
-            return;
-        }
         themePlugin.applyInGame(ui);
     }
 
     @Override
     public JComponent updateTablePanel(Map<String, JComponent> ui) {
-        if (MageFrame.isLite() || MageFrame.isGray() || themePlugin == null) {
-            return null;
-        }
         return themePlugin.updateTable(ui);
     }
 
