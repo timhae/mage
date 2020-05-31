@@ -18,7 +18,7 @@ import static org.mage.plugins.card.dl.DownloadJob.toFile;
 public class CardFrames implements Iterable<DownloadJob> {    
     
     private static final String FRAMES_PATH = File.separator + "frames";
-    private static final File DEFAULT_OUT_DIR = new File("plugins" + File.separator + "images" + FRAMES_PATH);
+    private static final File DEFAULT_OUT_DIR = new File("." + File.separator + ".." + File.separator + "images" + File.separator);
     private static File outDir = DEFAULT_OUT_DIR;
     
     static final String  BASE_DOWNLOAD_URL = "http://ct-magefree.rhcloud.com/resources/img/";
