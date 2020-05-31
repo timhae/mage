@@ -105,7 +105,7 @@ public class MageFrame extends javax.swing.JFrame implements MageClient {
     private static final MageVersion VERSION = new MageVersion(MageFrame.class);
     private Connection currentConnection;
     private static MagePane activeFrame;
-    private static boolean liteMode = false;
+    private static boolean liteMode = true;
     //TODO: make gray theme, implement theme selector in preferences dialog
     private static boolean grayMode = false;
     private static boolean fullscreenMode = false;
@@ -200,17 +200,9 @@ public class MageFrame extends javax.swing.JFrame implements MageClient {
         TConfig config = TConfig.current();
         config.setArchiveDetector(new TArchiveDetector("zip"));
         config.setAccessPreference(FsAccessOption.STORE, true);
-
         try {
             UIManager.put("desktop", new Color(0, 0, 0, 0));
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-
-            UIManager.put("nimbusBlueGrey", PreferencesDialog.getCurrentTheme().getNimbusBlueGrey()); // buttons, scrollbar background, disabled inputs
-            UIManager.put("control", PreferencesDialog.getCurrentTheme().getControl()); // window bg
-            UIManager.put("nimbusLightBackground", PreferencesDialog.getCurrentTheme().getNimbusLightBackground()); // inputs, table rows
-            UIManager.put("info", PreferencesDialog.getCurrentTheme().getInfo()); // tooltips
-            UIManager.put("nimbusBase", PreferencesDialog.getCurrentTheme().getNimbusBase()); // title bars, scrollbar foreground
-
             //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             // stop JSplitPane from eating F6 and F8 or any other function keys
             {
@@ -292,9 +284,6 @@ public class MageFrame extends javax.swing.JFrame implements MageClient {
                 int width = ((JComponent) e.getSource()).getWidth();
                 int height = ((JComponent) e.getSource()).getHeight();
                 SettingsManager.instance.setScreenWidthAndHeight(width, height);
-                if (!liteMode && !grayMode) {
-                    backgroundPane.setSize(width, height);
-                }
 
                 updateCurrentFrameSize();
 
@@ -453,26 +442,9 @@ public class MageFrame extends javax.swing.JFrame implements MageClient {
         }
     }
 
-    // Sets background for login screen
     private void setBackground() {
         if (liteMode || grayMode) {
             return;
-        }
-
-        try {
-            // If user has custom background, use that, otherwise, use theme background
-            if (Plugins.instance.isThemePluginLoaded() &&
-                    !PreferencesDialog.getCachedValue(PreferencesDialog.KEY_BACKGROUND_IMAGE_DEFAULT, "true").equals("true")) {
-                backgroundPane = (ImagePanel) Plugins.instance.updateTablePanel(new HashMap<>());
-            } else {
-                InputStream is = this.getClass().getResourceAsStream(PreferencesDialog.getCurrentTheme().getLoginBackgroundPath());
-                BufferedImage background = ImageIO.read(is);
-                backgroundPane = new ImagePanel(background, ImagePanelStyle.SCALED);
-            }
-            backgroundPane.setSize(1024, 768);
-            desktopPane.add(backgroundPane, JLayeredPane.DEFAULT_LAYER);
-        } catch (IOException e) {
-            LOGGER.fatal("Error while setting background.", e);
         }
     }
 
@@ -496,35 +468,6 @@ public class MageFrame extends javax.swing.JFrame implements MageClient {
     private void addMageLabel() {
         if (liteMode || grayMode) {
             return;
-        }
-
-        String filename;
-        float ratio;
-        if (isChrismasTime(Calendar.getInstance().getTime())) {
-            // chrismass logo
-            LOGGER.info("Yo Ho Ho, Merry Christmas and a Happy New Year");
-            filename = "/label-xmage-christmas.png";
-            ratio = 539.0f / 318.0f;
-        } else {
-            // standard logo
-            filename = "/label-xmage.png";
-            ratio = 509.0f / 288.0f;
-        }
-
-        try {
-            InputStream is = this.getClass().getResourceAsStream(filename);
-            if (is != null) {
-                titleRectangle = new Rectangle(540, (int) (640 / ratio));
-
-                BufferedImage image = ImageIO.read(is);
-                //ImageIcon resized = new ImageIcon(image.getScaledInstance(titleRectangle.width, titleRectangle.height, java.awt.Image.SCALE_SMOOTH));
-                title = new JLabel();
-                title.setIcon(new ImageIcon(image));
-                backgroundPane.setLayout(null);
-                backgroundPane.add(title);
-            }
-        } catch (IOException e) {
-            LOGGER.fatal("Error while adding mage label.", e);
         }
     }
 
@@ -1030,10 +973,6 @@ public class MageFrame extends javax.swing.JFrame implements MageClient {
                                 .addGap(2, 2, 2)
                                 .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
         );
-
-        if (PreferencesDialog.getCurrentTheme().getMageToolbar() != null) {
-            mageToolbar.getParent().setBackground(PreferencesDialog.getCurrentTheme().getMageToolbar());
-        }
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

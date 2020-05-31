@@ -47,7 +47,7 @@ public class PlayerPanelExt extends javax.swing.JPanel {
 
     private BigCard bigCard;
 
-    private static final String DEFAULT_AVATAR_PATH = "/avatars/" + DEFAULT_AVATAR_ID + ".jpg";
+    private static final String DEFAULT_AVATAR_PATH = "/avatar/quokka.jpg";
 
     private static final int PANEL_WIDTH = 94;
     private static final int PANEL_HEIGHT = 262;
@@ -276,14 +276,7 @@ public class PlayerPanelExt extends javax.swing.JPanel {
                 id = DEFAULT_AVATAR_ID;
             }
             if (id != avatarId) {
-                avatarId = id;
-                String path = "/avatars/" + avatarId + ".jpg";
-                if (avatarId == 64) {
-                    path = "/avatars/i64.jpg";
-                } else if (avatarId >= 1000) {
-                    avatarId = avatarId - 1000;
-                    path = "/avatars/special/" + avatarId + ".gif";
-                }
+                String path = "/avatar/quokka.jpg";
                 Image image = ImageHelper.getImageFromResources(path);
                 Rectangle r = new Rectangle(80, 80);
                 BufferedImage resized = ImageHelper.getResizedImage(BufferedImageBuilder.bufferImage(image, BufferedImage.TYPE_INT_ARGB), r);

@@ -292,8 +292,6 @@ public class PreferencesDialog extends javax.swing.JDialog {
     public static final String KEY_CONTROL_SKIP_STACK = "controlSkipStack";
     public static final String KEY_CONTROL_PRIOR_END = "controlPriorEnd";
 
-    public static final String KEY_AVATAR = "selectedId";
-
     public static final String KEY_CONNECT_AUTO_CONNECT = "autoConnect";
     public static final String KEY_CONNECT_FLAG = "connectFlag";
 
@@ -311,18 +309,6 @@ public class PreferencesDialog extends javax.swing.JDialog {
 
     private static final Border GREEN_BORDER = BorderFactory.createLineBorder(Color.GREEN, 3);
     private static final Border BLACK_BORDER = BorderFactory.createLineBorder(Color.BLACK, 3);
-
-    private static int selectedAvatarId;
-    
-    private static ThemeType currentTheme = null;
-    
-    public static ThemeType getCurrentTheme() {
-        if (currentTheme == null) {
-            currentTheme = ThemeType.valueByName(getCachedValue(KEY_THEME, "Default Theme"));
-        }
-        
-        return currentTheme;
-    }
 
     private final JFileChooser fc = new JFileChooser();
 
@@ -373,8 +359,6 @@ public class PreferencesDialog extends javax.swing.JDialog {
         initComponents();
         txtImageFolderPath.setEditable(false);
         cbProxyType.setModel(new DefaultComboBoxModel<>(Connection.ProxyType.values()));
-        cbTheme.setModel(new DefaultComboBoxModel<>(ThemeType.values()));
-        addAvatars();
 
         cbPreferedImageLanguage.setModel(new DefaultComboBoxModel<>(CardLanguage.toList()));
         cbNumberOfDownloadThreads.setModel(new DefaultComboBoxModel<>(new String[]{"10", "9", "8", "7", "6", "5", "4", "3", "2", "1"}));
@@ -512,33 +496,6 @@ public class PreferencesDialog extends javax.swing.JDialog {
         jLabel16 = new javax.swing.JLabel();
         txtBattlefieldIBGMPath = new javax.swing.JTextField();
         btnBattlefieldBGMBrowse = new javax.swing.JButton();
-        tabAvatars = new javax.swing.JPanel();
-        avatarPane = new javax.swing.JScrollPane();
-        avatarPanel = new javax.swing.JPanel();
-        jPanel10 = new javax.swing.JPanel();
-        jPanel11 = new javax.swing.JPanel();
-        jPanel12 = new javax.swing.JPanel();
-        jPanel13 = new javax.swing.JPanel();
-        jPanel14 = new javax.swing.JPanel();
-        jPanel15 = new javax.swing.JPanel();
-        jPanel16 = new javax.swing.JPanel();
-        jPanel17 = new javax.swing.JPanel();
-        jPanel18 = new javax.swing.JPanel();
-        jPanel19 = new javax.swing.JPanel();
-        jPanel20 = new javax.swing.JPanel();
-        jPanel21 = new javax.swing.JPanel();
-        jPanel22 = new javax.swing.JPanel();
-        jPanel23 = new javax.swing.JPanel();
-        jPanel24 = new javax.swing.JPanel();
-        jPanel25 = new javax.swing.JPanel();
-        jPanel26 = new javax.swing.JPanel();
-        jPanel27 = new javax.swing.JPanel();
-        jPanel28 = new javax.swing.JPanel();
-        jPanel29 = new javax.swing.JPanel();
-        jPanel30 = new javax.swing.JPanel();
-        jPanel31 = new javax.swing.JPanel();
-        jPanel32 = new javax.swing.JPanel();
-        jPanel33 = new javax.swing.JPanel();
         tabConnection = new javax.swing.JPanel();
         connection_servers = new javax.swing.JPanel();
         lblURLServerList = new javax.swing.JLabel();
@@ -1892,465 +1849,6 @@ public class PreferencesDialog extends javax.swing.JDialog {
 
         tabsPanel.addTab("Sounds", tabSounds);
 
-        avatarPane.setMaximumSize(new java.awt.Dimension(508, 772));
-        avatarPane.setMinimumSize(new java.awt.Dimension(508, 772));
-        avatarPane.setPreferredSize(new java.awt.Dimension(508, 772));
-
-        avatarPanel.setMaximumSize(new java.awt.Dimension(508, 772));
-        avatarPanel.setMinimumSize(new java.awt.Dimension(508, 772));
-        avatarPanel.setPreferredSize(new java.awt.Dimension(508, 772));
-        avatarPanel.setLayout(new java.awt.GridLayout(6, 4, 20, 20));
-
-        jPanel10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jPanel10.setMaximumSize(new java.awt.Dimension(102, 102));
-        jPanel10.setMinimumSize(new java.awt.Dimension(102, 102));
-        jPanel10.setPreferredSize(new java.awt.Dimension(102, 102));
-
-        org.jdesktop.layout.GroupLayout jPanel10Layout = new org.jdesktop.layout.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-
-        avatarPanel.add(jPanel10);
-
-        jPanel11.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jPanel11.setMaximumSize(new java.awt.Dimension(102, 102));
-        jPanel11.setMinimumSize(new java.awt.Dimension(102, 102));
-        jPanel11.setPreferredSize(new java.awt.Dimension(102, 102));
-
-        org.jdesktop.layout.GroupLayout jPanel11Layout = new org.jdesktop.layout.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-
-        avatarPanel.add(jPanel11);
-
-        jPanel12.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jPanel12.setMaximumSize(new java.awt.Dimension(102, 102));
-        jPanel12.setMinimumSize(new java.awt.Dimension(102, 102));
-        jPanel12.setPreferredSize(new java.awt.Dimension(102, 102));
-
-        org.jdesktop.layout.GroupLayout jPanel12Layout = new org.jdesktop.layout.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-
-        avatarPanel.add(jPanel12);
-
-        jPanel13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jPanel13.setMaximumSize(new java.awt.Dimension(102, 102));
-        jPanel13.setMinimumSize(new java.awt.Dimension(102, 102));
-        jPanel13.setPreferredSize(new java.awt.Dimension(102, 102));
-
-        org.jdesktop.layout.GroupLayout jPanel13Layout = new org.jdesktop.layout.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-
-        avatarPanel.add(jPanel13);
-
-        jPanel14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jPanel14.setMaximumSize(new java.awt.Dimension(102, 102));
-        jPanel14.setMinimumSize(new java.awt.Dimension(102, 102));
-        jPanel14.setPreferredSize(new java.awt.Dimension(102, 102));
-
-        org.jdesktop.layout.GroupLayout jPanel14Layout = new org.jdesktop.layout.GroupLayout(jPanel14);
-        jPanel14.setLayout(jPanel14Layout);
-        jPanel14Layout.setHorizontalGroup(
-            jPanel14Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-        jPanel14Layout.setVerticalGroup(
-            jPanel14Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-
-        avatarPanel.add(jPanel14);
-
-        jPanel15.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jPanel15.setMaximumSize(new java.awt.Dimension(102, 102));
-        jPanel15.setMinimumSize(new java.awt.Dimension(102, 102));
-        jPanel15.setPreferredSize(new java.awt.Dimension(102, 102));
-
-        org.jdesktop.layout.GroupLayout jPanel15Layout = new org.jdesktop.layout.GroupLayout(jPanel15);
-        jPanel15.setLayout(jPanel15Layout);
-        jPanel15Layout.setHorizontalGroup(
-            jPanel15Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-        jPanel15Layout.setVerticalGroup(
-            jPanel15Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-
-        avatarPanel.add(jPanel15);
-
-        jPanel16.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jPanel16.setMaximumSize(new java.awt.Dimension(102, 102));
-        jPanel16.setMinimumSize(new java.awt.Dimension(102, 102));
-        jPanel16.setPreferredSize(new java.awt.Dimension(102, 102));
-
-        org.jdesktop.layout.GroupLayout jPanel16Layout = new org.jdesktop.layout.GroupLayout(jPanel16);
-        jPanel16.setLayout(jPanel16Layout);
-        jPanel16Layout.setHorizontalGroup(
-            jPanel16Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-        jPanel16Layout.setVerticalGroup(
-            jPanel16Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-
-        avatarPanel.add(jPanel16);
-
-        jPanel17.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jPanel17.setMaximumSize(new java.awt.Dimension(102, 102));
-        jPanel17.setMinimumSize(new java.awt.Dimension(102, 102));
-        jPanel17.setPreferredSize(new java.awt.Dimension(102, 102));
-
-        org.jdesktop.layout.GroupLayout jPanel17Layout = new org.jdesktop.layout.GroupLayout(jPanel17);
-        jPanel17.setLayout(jPanel17Layout);
-        jPanel17Layout.setHorizontalGroup(
-            jPanel17Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-        jPanel17Layout.setVerticalGroup(
-            jPanel17Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-
-        avatarPanel.add(jPanel17);
-
-        jPanel18.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jPanel18.setMaximumSize(new java.awt.Dimension(102, 102));
-        jPanel18.setMinimumSize(new java.awt.Dimension(102, 102));
-        jPanel18.setPreferredSize(new java.awt.Dimension(102, 102));
-
-        org.jdesktop.layout.GroupLayout jPanel18Layout = new org.jdesktop.layout.GroupLayout(jPanel18);
-        jPanel18.setLayout(jPanel18Layout);
-        jPanel18Layout.setHorizontalGroup(
-            jPanel18Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-        jPanel18Layout.setVerticalGroup(
-            jPanel18Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-
-        avatarPanel.add(jPanel18);
-
-        jPanel19.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jPanel19.setMaximumSize(new java.awt.Dimension(102, 102));
-        jPanel19.setMinimumSize(new java.awt.Dimension(102, 102));
-        jPanel19.setPreferredSize(new java.awt.Dimension(102, 102));
-
-        org.jdesktop.layout.GroupLayout jPanel19Layout = new org.jdesktop.layout.GroupLayout(jPanel19);
-        jPanel19.setLayout(jPanel19Layout);
-        jPanel19Layout.setHorizontalGroup(
-            jPanel19Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-        jPanel19Layout.setVerticalGroup(
-            jPanel19Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-
-        avatarPanel.add(jPanel19);
-
-        jPanel20.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jPanel20.setMaximumSize(new java.awt.Dimension(102, 102));
-        jPanel20.setMinimumSize(new java.awt.Dimension(102, 102));
-        jPanel20.setPreferredSize(new java.awt.Dimension(102, 102));
-
-        org.jdesktop.layout.GroupLayout jPanel20Layout = new org.jdesktop.layout.GroupLayout(jPanel20);
-        jPanel20.setLayout(jPanel20Layout);
-        jPanel20Layout.setHorizontalGroup(
-            jPanel20Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-        jPanel20Layout.setVerticalGroup(
-            jPanel20Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-
-        avatarPanel.add(jPanel20);
-
-        jPanel21.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jPanel21.setMaximumSize(new java.awt.Dimension(102, 102));
-        jPanel21.setMinimumSize(new java.awt.Dimension(102, 102));
-        jPanel21.setPreferredSize(new java.awt.Dimension(102, 102));
-
-        org.jdesktop.layout.GroupLayout jPanel21Layout = new org.jdesktop.layout.GroupLayout(jPanel21);
-        jPanel21.setLayout(jPanel21Layout);
-        jPanel21Layout.setHorizontalGroup(
-            jPanel21Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-        jPanel21Layout.setVerticalGroup(
-            jPanel21Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-
-        avatarPanel.add(jPanel21);
-
-        jPanel22.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jPanel22.setMaximumSize(new java.awt.Dimension(102, 102));
-        jPanel22.setMinimumSize(new java.awt.Dimension(102, 102));
-        jPanel22.setPreferredSize(new java.awt.Dimension(102, 102));
-
-        org.jdesktop.layout.GroupLayout jPanel22Layout = new org.jdesktop.layout.GroupLayout(jPanel22);
-        jPanel22.setLayout(jPanel22Layout);
-        jPanel22Layout.setHorizontalGroup(
-            jPanel22Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-        jPanel22Layout.setVerticalGroup(
-            jPanel22Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-
-        avatarPanel.add(jPanel22);
-
-        jPanel23.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jPanel23.setMaximumSize(new java.awt.Dimension(102, 102));
-        jPanel23.setMinimumSize(new java.awt.Dimension(102, 102));
-        jPanel23.setPreferredSize(new java.awt.Dimension(102, 102));
-
-        org.jdesktop.layout.GroupLayout jPanel23Layout = new org.jdesktop.layout.GroupLayout(jPanel23);
-        jPanel23.setLayout(jPanel23Layout);
-        jPanel23Layout.setHorizontalGroup(
-            jPanel23Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-        jPanel23Layout.setVerticalGroup(
-            jPanel23Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-
-        avatarPanel.add(jPanel23);
-
-        jPanel24.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jPanel24.setMaximumSize(new java.awt.Dimension(102, 102));
-        jPanel24.setMinimumSize(new java.awt.Dimension(102, 102));
-        jPanel24.setPreferredSize(new java.awt.Dimension(102, 102));
-
-        org.jdesktop.layout.GroupLayout jPanel24Layout = new org.jdesktop.layout.GroupLayout(jPanel24);
-        jPanel24.setLayout(jPanel24Layout);
-        jPanel24Layout.setHorizontalGroup(
-            jPanel24Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-        jPanel24Layout.setVerticalGroup(
-            jPanel24Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-
-        avatarPanel.add(jPanel24);
-
-        jPanel25.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jPanel25.setMaximumSize(new java.awt.Dimension(102, 102));
-        jPanel25.setMinimumSize(new java.awt.Dimension(102, 102));
-        jPanel25.setPreferredSize(new java.awt.Dimension(102, 102));
-
-        org.jdesktop.layout.GroupLayout jPanel25Layout = new org.jdesktop.layout.GroupLayout(jPanel25);
-        jPanel25.setLayout(jPanel25Layout);
-        jPanel25Layout.setHorizontalGroup(
-            jPanel25Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-        jPanel25Layout.setVerticalGroup(
-            jPanel25Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-
-        avatarPanel.add(jPanel25);
-
-        jPanel26.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jPanel26.setMaximumSize(new java.awt.Dimension(102, 102));
-        jPanel26.setMinimumSize(new java.awt.Dimension(102, 102));
-        jPanel26.setPreferredSize(new java.awt.Dimension(102, 102));
-
-        org.jdesktop.layout.GroupLayout jPanel26Layout = new org.jdesktop.layout.GroupLayout(jPanel26);
-        jPanel26.setLayout(jPanel26Layout);
-        jPanel26Layout.setHorizontalGroup(
-            jPanel26Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-        jPanel26Layout.setVerticalGroup(
-            jPanel26Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-
-        avatarPanel.add(jPanel26);
-
-        jPanel27.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jPanel27.setMaximumSize(new java.awt.Dimension(102, 102));
-        jPanel27.setMinimumSize(new java.awt.Dimension(102, 102));
-        jPanel27.setPreferredSize(new java.awt.Dimension(102, 102));
-
-        org.jdesktop.layout.GroupLayout jPanel27Layout = new org.jdesktop.layout.GroupLayout(jPanel27);
-        jPanel27.setLayout(jPanel27Layout);
-        jPanel27Layout.setHorizontalGroup(
-            jPanel27Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-        jPanel27Layout.setVerticalGroup(
-            jPanel27Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-
-        avatarPanel.add(jPanel27);
-
-        jPanel28.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jPanel28.setMaximumSize(new java.awt.Dimension(102, 102));
-        jPanel28.setMinimumSize(new java.awt.Dimension(102, 102));
-        jPanel28.setPreferredSize(new java.awt.Dimension(102, 102));
-
-        org.jdesktop.layout.GroupLayout jPanel28Layout = new org.jdesktop.layout.GroupLayout(jPanel28);
-        jPanel28.setLayout(jPanel28Layout);
-        jPanel28Layout.setHorizontalGroup(
-            jPanel28Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-        jPanel28Layout.setVerticalGroup(
-            jPanel28Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-
-        avatarPanel.add(jPanel28);
-
-        jPanel29.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jPanel29.setMaximumSize(new java.awt.Dimension(102, 102));
-        jPanel29.setMinimumSize(new java.awt.Dimension(102, 102));
-        jPanel29.setPreferredSize(new java.awt.Dimension(102, 102));
-
-        org.jdesktop.layout.GroupLayout jPanel29Layout = new org.jdesktop.layout.GroupLayout(jPanel29);
-        jPanel29.setLayout(jPanel29Layout);
-        jPanel29Layout.setHorizontalGroup(
-            jPanel29Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-        jPanel29Layout.setVerticalGroup(
-            jPanel29Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-
-        avatarPanel.add(jPanel29);
-
-        jPanel30.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jPanel30.setMaximumSize(new java.awt.Dimension(102, 102));
-        jPanel30.setMinimumSize(new java.awt.Dimension(102, 102));
-        jPanel30.setPreferredSize(new java.awt.Dimension(102, 102));
-
-        org.jdesktop.layout.GroupLayout jPanel30Layout = new org.jdesktop.layout.GroupLayout(jPanel30);
-        jPanel30.setLayout(jPanel30Layout);
-        jPanel30Layout.setHorizontalGroup(
-            jPanel30Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-        jPanel30Layout.setVerticalGroup(
-            jPanel30Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-
-        avatarPanel.add(jPanel30);
-
-        jPanel31.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jPanel31.setMaximumSize(new java.awt.Dimension(102, 102));
-        jPanel31.setMinimumSize(new java.awt.Dimension(102, 102));
-        jPanel31.setPreferredSize(new java.awt.Dimension(102, 102));
-
-        org.jdesktop.layout.GroupLayout jPanel31Layout = new org.jdesktop.layout.GroupLayout(jPanel31);
-        jPanel31.setLayout(jPanel31Layout);
-        jPanel31Layout.setHorizontalGroup(
-            jPanel31Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-        jPanel31Layout.setVerticalGroup(
-            jPanel31Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-
-        avatarPanel.add(jPanel31);
-
-        jPanel32.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jPanel32.setMaximumSize(new java.awt.Dimension(102, 102));
-        jPanel32.setMinimumSize(new java.awt.Dimension(102, 102));
-        jPanel32.setPreferredSize(new java.awt.Dimension(102, 102));
-
-        org.jdesktop.layout.GroupLayout jPanel32Layout = new org.jdesktop.layout.GroupLayout(jPanel32);
-        jPanel32.setLayout(jPanel32Layout);
-        jPanel32Layout.setHorizontalGroup(
-            jPanel32Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-        jPanel32Layout.setVerticalGroup(
-            jPanel32Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-
-        avatarPanel.add(jPanel32);
-
-        jPanel33.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jPanel33.setMaximumSize(new java.awt.Dimension(102, 102));
-        jPanel33.setMinimumSize(new java.awt.Dimension(102, 102));
-
-        org.jdesktop.layout.GroupLayout jPanel33Layout = new org.jdesktop.layout.GroupLayout(jPanel33);
-        jPanel33.setLayout(jPanel33Layout);
-        jPanel33Layout.setHorizontalGroup(
-            jPanel33Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-        jPanel33Layout.setVerticalGroup(
-            jPanel33Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
-        );
-
-        avatarPanel.add(jPanel33);
-
-        avatarPane.setViewportView(avatarPanel);
-
-        org.jdesktop.layout.GroupLayout tabAvatarsLayout = new org.jdesktop.layout.GroupLayout(tabAvatars);
-        tabAvatars.setLayout(tabAvatarsLayout);
-        tabAvatarsLayout.setHorizontalGroup(
-            tabAvatarsLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(tabAvatarsLayout.createSequentialGroup()
-                .add(avatarPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 528, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(0, 0, Short.MAX_VALUE))
-        );
-        tabAvatarsLayout.setVerticalGroup(
-            tabAvatarsLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(tabAvatarsLayout.createSequentialGroup()
-                .add(avatarPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        tabsPanel.addTab("Avatars", tabAvatars);
-
         connection_servers.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Servers"));
 
         lblURLServerList.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -2963,16 +2461,6 @@ public class PreferencesDialog extends javax.swing.JDialog {
         save(prefs, dialog.keyToggleRecordMacro);
         save(prefs, dialog.keySwitchChat);
 
-        // Themes
-        save(prefs, dialog.cbTheme, KEY_THEME);
-
-        // Avatar
-        if (selectedAvatarId < MIN_AVATAR_ID || selectedAvatarId > MAX_AVATAR_ID) {
-            selectedAvatarId = DEFAULT_AVATAR_ID;
-        }
-        prefs.put(KEY_AVATAR, String.valueOf(selectedAvatarId));
-        updateCache(KEY_AVATAR, String.valueOf(selectedAvatarId));
-
         try {
             SessionHandler.updatePreferencesForServer(getUserData());
             prefs.flush();
@@ -3359,12 +2847,6 @@ public class PreferencesDialog extends javax.swing.JDialog {
                 // Controls
                 loadControlSettings(prefs);
 
-                // Themes
-                loadThemeSettings(prefs);
-
-                // Selected avatar
-                loadSelectedAvatar(prefs);
-
                 dialog.reset();
                 // open specified tab before displaying
                 openTab(openedTab);
@@ -3549,28 +3031,6 @@ public class PreferencesDialog extends javax.swing.JDialog {
         load(prefs, dialog.keyPriorEnd);
         load(prefs, dialog.keyToggleRecordMacro);
         load(prefs, dialog.keySwitchChat);
-    }
-
-    private static void loadThemeSettings(Preferences prefs) {
-        dialog.cbTheme.setSelectedItem(PreferencesDialog.getCurrentTheme());
-    }
-
-    private static void loadSelectedAvatar(Preferences prefs) {
-        getSelectedAvatar();
-        dialog.setSelectedId(selectedAvatarId);
-    }
-
-    public static int getSelectedAvatar() {
-        try {
-            selectedAvatarId = Integer.valueOf(MageFrame.getPreferences().get(KEY_AVATAR, String.valueOf(DEFAULT_AVATAR_ID)));
-        } catch (NumberFormatException n) {
-            selectedAvatarId = DEFAULT_AVATAR_ID;
-        } finally {
-            if (selectedAvatarId < MIN_AVATAR_ID || selectedAvatarId > MAX_AVATAR_ID) {
-                selectedAvatarId = DEFAULT_AVATAR_ID;
-            }
-        }
-        return selectedAvatarId;
     }
 
     public static UserSkipPrioritySteps getUserSkipPrioritySteps() {
@@ -3855,89 +3315,10 @@ public class PreferencesDialog extends javax.swing.JDialog {
         updateCache(key, value);
     }
 
-    private void addAvatars() {
-        try {
-            addAvatar(jPanel10, 10, true, false);
-            addAvatar(jPanel11, 11, false, false);
-            addAvatar(jPanel12, 12, false, false);
-            addAvatar(jPanel13, 13, false, false);
-            addAvatar(jPanel14, 14, false, false);
-            addAvatar(jPanel15, 15, false, false);
-            addAvatar(jPanel16, 16, false, false);
-            addAvatar(jPanel17, 17, false, false);
-            addAvatar(jPanel18, 18, false, false);
-            addAvatar(jPanel19, 19, false, false);
-            addAvatar(jPanel20, 20, false, false);
-            addAvatar(jPanel21, 21, false, false);
-            addAvatar(jPanel22, 22, false, false);
-            addAvatar(jPanel23, 23, false, false);
-            addAvatar(jPanel24, 24, false, false);
-            addAvatar(jPanel25, 25, false, false);
-            addAvatar(jPanel26, 26, false, false);
-            addAvatar(jPanel27, 27, false, false);
-            addAvatar(jPanel28, 28, false, false);
-            addAvatar(jPanel29, 29, false, false);
-            addAvatar(jPanel30, 30, false, false);
-            addAvatar(jPanel31, 31, false, false);
-            addAvatar(jPanel32, 32, false, false);
-
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-        }
-    }
-
-    public void setSelectedId(int id) {
-        if (id >= MIN_AVATAR_ID && id <= MAX_AVATAR_ID) {
-            for (JPanel panel : PANELS.values()) {
-                panel.setBorder(BLACK_BORDER);
-            }
-            PreferencesDialog.selectedAvatarId = id;
-            PANELS.get(PreferencesDialog.selectedAvatarId).setBorder(GREEN_BORDER);
-        }
-    }
-
-    private void addAvatar(JPanel jPanel, final int id, boolean selected, boolean locked) {
-        String path = "/avatars/" + id + ".jpg";
-        PANELS.put(id, jPanel);
-        Image image = ImageHelper.getImageFromResources(path);
-
-        Rectangle r = new Rectangle(jPanel.getWidth() - 5, jPanel.getHeight() - 5);
-        BufferedImage bufferedImage;
-        if (!locked) {
-            bufferedImage = BufferedImageBuilder.bufferImage(image, BufferedImage.TYPE_INT_ARGB);
-        } else {
-            bufferedImage = BufferedImageBuilder.bufferImage(image, BufferedImage.TYPE_INT_ARGB, new Color(150, 150, 150, 170));
-        }
-        BufferedImage resized = ImageHelper.getResizedImage(bufferedImage, r);
-        final JLabel jLabel = new JLabel();
-        jLabel.setIcon(new ImageIcon(resized));
-        if (selected) {
-            jPanel.setBorder(GREEN_BORDER);
-        } else {
-            jPanel.setBorder(BLACK_BORDER);
-        }
-        jPanel.setLayout(new BorderLayout());
-        jPanel.add(jLabel);
-        if (!locked) {
-            jLabel.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mousePressed(MouseEvent e) {
-                    if (selectedAvatarId != id) {
-                        setSelectedId(id);
-                        SessionHandler.updatePreferencesForServer(getUserData());
-                    }
-                }
-            });
-        }
-    }
-
     public static UserData getUserData() {
-        if (selectedAvatarId == 0) {
-            getSelectedAvatar();
-        }
         String userStrId = System.getProperty("user.name");
         return new UserData(UserGroup.PLAYER,
-                PreferencesDialog.selectedAvatarId,
+                0,
                 PreferencesDialog.getCachedValue(PreferencesDialog.KEY_SHOW_ABILITY_PICKER_FORCED, "true").equals("true"),
                 PreferencesDialog.getCachedValue(PreferencesDialog.KEY_GAME_ALLOW_REQUEST_SHOW_HAND_CARDS, "true").equals("true"),
                 PreferencesDialog.getCachedValue(PreferencesDialog.KEY_GAME_CONFIRM_EMPTY_MANA_POOL, "true").equals("true"),
@@ -3977,8 +3358,6 @@ public class PreferencesDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane avatarPane;
-    private javax.swing.JPanel avatarPanel;
     private javax.swing.JButton btnBattlefieldBGMBrowse;
     private javax.swing.JButton btnBrowseBackgroundImage;
     private javax.swing.JButton btnBrowseBattlefieldImage;
@@ -4155,7 +3534,6 @@ public class PreferencesDialog extends javax.swing.JDialog {
     private javax.swing.JSlider sliderTooltipSize;
     private javax.swing.JPanel sounds_backgroundMusic;
     private javax.swing.JPanel sounds_clips;
-    private javax.swing.JPanel tabAvatars;
     private javax.swing.JPanel tabConnection;
     private javax.swing.JPanel tabControls;
     private javax.swing.JPanel tabGuiSize;
