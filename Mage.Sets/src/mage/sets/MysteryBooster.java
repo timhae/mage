@@ -1473,7 +1473,6 @@ public class MysteryBooster extends ExpansionSet {
         cards.add(new SetCardInfo("Stave Off", 246, Rarity.COMMON, mage.cards.s.StaveOff.class));
         cards.add(new SetCardInfo("Steadfast Sentinel", 247, Rarity.COMMON, mage.cards.s.SteadfastSentinel.class));
         cards.add(new SetCardInfo("Steady Progress", 504, Rarity.COMMON, mage.cards.s.SteadyProgress.class));
-        cards.add(new SetCardInfo("Steamflogger Boss", 1069, Rarity.RARE, mage.cards.s.SteamfloggerBoss.class));
         cards.add(new SetCardInfo("Stinkweed Imp", 782, Rarity.COMMON, mage.cards.s.StinkweedImp.class));
         cards.add(new SetCardInfo("Stitched Drake", 505, Rarity.COMMON, mage.cards.s.StitchedDrake.class));
         cards.add(new SetCardInfo("Stoic Builder", 1342, Rarity.COMMON, mage.cards.s.StoicBuilder.class));

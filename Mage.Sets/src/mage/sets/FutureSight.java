@@ -182,7 +182,6 @@ public final class FutureSight extends ExpansionSet {
         cards.add(new SetCardInfo("Spirit en-Dal", 17, Rarity.UNCOMMON, mage.cards.s.SpiritEnDal.class));
         cards.add(new SetCardInfo("Sporoloth Ancient", 152, Rarity.COMMON, mage.cards.s.SporolothAncient.class));
         cards.add(new SetCardInfo("Sprout Swarm", 138, Rarity.COMMON, mage.cards.s.SproutSwarm.class));
-        cards.add(new SetCardInfo("Steamflogger Boss", 121, Rarity.RARE, mage.cards.s.SteamfloggerBoss.class));
         cards.add(new SetCardInfo("Storm Entity", 122, Rarity.UNCOMMON, mage.cards.s.StormEntity.class));
         cards.add(new SetCardInfo("Street Wraith", 90, Rarity.UNCOMMON, mage.cards.s.StreetWraith.class));
         cards.add(new SetCardInfo("Stronghold Rats", 79, Rarity.UNCOMMON, mage.cards.s.StrongholdRats.class));
