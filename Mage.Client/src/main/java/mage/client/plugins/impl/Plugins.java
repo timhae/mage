@@ -91,7 +91,7 @@ public enum Plugins implements MagePlugins {
         if (cardPlugin != null) {
             mageActionCallback.refreshSession();
             mageActionCallback.setCardPreviewComponent(bigCard);
-            return cardPlugin.getMagePermanent(card, dimension, gameId, mageActionCallback, false, !MageFrame.isLite() && loadImage, renderMode, needFullPermanentRender);
+            return cardPlugin.getMagePermanent(card, dimension, gameId, mageActionCallback, false, loadImage, renderMode, needFullPermanentRender);
         } else {
             return new Permanent(card, bigCard, ClientDefaultSettings.dimensions, gameId);
         }
@@ -104,7 +104,7 @@ public enum Plugins implements MagePlugins {
                 mageActionCallback.refreshSession();
                 mageActionCallback.setCardPreviewComponent(bigCard);
             }
-            return cardPlugin.getMageCard(card, dimension, gameId, mageActionCallback, false, !MageFrame.isLite() && loadImage, renderMode, needFullPermanentRender);
+            return cardPlugin.getMageCard(card, dimension, gameId, mageActionCallback, false, loadImage, renderMode, needFullPermanentRender);
         } else {
             return new Card(card, bigCard, ClientDefaultSettings.dimensions, gameId);
         }

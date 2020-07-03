@@ -21,9 +21,6 @@
         <module>Mage.Game.CommanderDuel</module>
         <module>Mage.Game.CommanderFreeForAll</module>
         <module>Mage.Game.FreeForAll</module>
-        <module>Mage.Game.FreeformCommanderDuel</module>
-        <module>Mage.Game.FreeformCommanderFreeForAll</module>
-        <module>Mage.Game.FreeformUnlimitedCommander</module>
         <module>Mage.Game.TwoPlayerDuel</module>
         <module>Mage.Player.AI</module>
         <module>Mage.Player.AIMinimax</module>

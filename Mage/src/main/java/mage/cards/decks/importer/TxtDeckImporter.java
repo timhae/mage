@@ -21,7 +21,7 @@ public class TxtDeckImporter extends PlainTextDeckImporter {
     private static final Set<String> IGNORE_NAMES = new HashSet<>(Arrays.asList(SET_VALUES));
 
     private boolean sideboard = false;
-    private boolean switchSideboardByEmptyLine = true; // all cards after first empty line will be sideboard (like mtgo format)
+    private boolean switchSideboardByEmptyLine = false; // all cards after first empty line will be sideboard (like mtgo format)
     private boolean wasCardLines = false;
 
     public TxtDeckImporter(boolean haveSideboardSection) {
@@ -61,13 +61,7 @@ public class TxtDeckImporter extends PlainTextDeckImporter {
         }
 
         // switch sideboard by empty line
-        if (switchSideboardByEmptyLine && line.isEmpty()) {
-            if (!sideboard) {
-                sideboard = true;
-            } else {
-                sbMessage.append("Found empty line at ").append(lineCount).append(", but sideboard already used. Use //sideboard switcher OR use only one empty line to devide your cards.").append('\n');
-            }
-
+        if (line.isEmpty()) {
             // skip empty line
             return;
         }
