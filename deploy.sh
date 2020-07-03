@@ -5,7 +5,7 @@ pushd .
 pushd Mage.Client
 mvn assembly:assembly
 pushd target
-scp mage-client.zip autarch@bernardi.uberspace.de:/home/autarch/html/
+scp mage-client.zip root@hetzner1:/var/www/haering.dev/
 popd
 popd
 pushd Mage.Server
