@@ -1,6 +1,7 @@
 #!/usr/bin/env nix-shell
 #!nix-shell -i bash -p maven openjdk11 protobuf
 
+./clean_dbs.sh
 pushd .
 pushd Mage.Client
 mvn assembly:assembly
