@@ -47,7 +47,6 @@ public class AudioManager {
     private MageClip playerQuitTournament = null;
     private MageClip playerWon = null;
     private MageClip playerLost = null;
-    private MageClip feedbackNeeded = null;
     /**
      * AudioManager singleton.
      */
@@ -284,13 +283,6 @@ public class AudioManager {
             audioManager.playerWon = new MageClip(Constants.BASE_SOUND_PATH + "OnPlayerWon.wav", AudioGroup.GameSounds);
         }
         checkAndPlayClip(audioManager.playerWon);
-    }
-    
-    public static void playFeedbackNeeded() {
-        if (audioManager.feedbackNeeded == null) {
-            audioManager.feedbackNeeded = new MageClip(Constants.BASE_SOUND_PATH + "FeedbackNeeded.wav", AudioGroup.GameSounds);
-        }
-        checkAndPlayClip(audioManager.feedbackNeeded);
     }
 
     private static boolean audioGroupEnabled(AudioGroup audioGroup) {

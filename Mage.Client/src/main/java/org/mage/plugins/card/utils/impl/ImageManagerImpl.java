@@ -14,8 +14,6 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import javax.imageio.ImageIO;
-
-import mage.client.dialog.PreferencesDialog;
 import mage.client.util.gui.BufferedImageBuilder;
 import org.mage.plugins.card.utils.ImageManager;
 import org.mage.plugins.card.utils.Transparency;
@@ -33,9 +31,7 @@ public enum ImageManagerImpl implements ImageManager {
             "Main2", "Cleanup", "Next_Turn"};
         phasesImages = new HashMap<>();
         for (String name : phases) {
-            Image image = getImageFromResource(
-                    PreferencesDialog.getCurrentTheme().getPhasePath("phase_" + name.toLowerCase(Locale.ENGLISH) + ".png"),
-                    new Rectangle(36, 36));
+            Image image = getImageFromResource("/phases/phase_" + name.toLowerCase(Locale.ENGLISH) + ".png", new Rectangle(36, 36));
             phasesImages.put(name, image);
         }
     }
@@ -267,8 +263,7 @@ public enum ImageManagerImpl implements ImageManager {
     @Override
     public Image getConcedeButtonImage() {
         if (imageConcedeButton == null) {
-            imageConcedeButton = getBufferedImageFromResource(
-                    PreferencesDialog.getCurrentTheme().getButtonPath("concede.png"));
+            imageConcedeButton = getBufferedImageFromResource("/buttons/concede.png");
         }
         return imageConcedeButton;
     }
@@ -276,8 +271,7 @@ public enum ImageManagerImpl implements ImageManager {
     @Override
     public Image getSwitchHandsButtonImage() {
         if (imageSwitchHandsButton == null) {
-            imageSwitchHandsButton = getBufferedImageFromResource(
-                    PreferencesDialog.getCurrentTheme().getButtonPath("switch_hands.png"));
+            imageSwitchHandsButton = getBufferedImageFromResource("/buttons/switch_hands.png");
         }
         return imageSwitchHandsButton;
     }
@@ -285,8 +279,7 @@ public enum ImageManagerImpl implements ImageManager {
     @Override
     public Image getStopWatchButtonImage() {
         if (imageStopWatchingButton == null) {
-            imageStopWatchingButton = getBufferedImageFromResource(
-                    PreferencesDialog.getCurrentTheme().getButtonPath("stop_watching.png"));
+            imageStopWatchingButton = getBufferedImageFromResource("/buttons/stop_watching.png");
         }
         return imageStopWatchingButton;
     }
@@ -294,8 +287,7 @@ public enum ImageManagerImpl implements ImageManager {
     @Override
     public Image getCancelSkipButtonImage() {
         if (imageCancelSkipButton == null) {
-            imageCancelSkipButton = getBufferedImageFromResource(
-                    PreferencesDialog.getCurrentTheme().getButtonPath("cancel_skip.png"));
+            imageCancelSkipButton = getBufferedImageFromResource("/buttons/cancel_skip.png");
         }
         return imageCancelSkipButton;
     }
@@ -303,8 +295,7 @@ public enum ImageManagerImpl implements ImageManager {
     @Override
     public Image getSkipNextTurnButtonImage() {
         if (imageSkipNextTurnButton == null) {
-            imageSkipNextTurnButton = getBufferedImageFromResource(
-                    PreferencesDialog.getCurrentTheme().getButtonPath("skip_turn.png"));
+            imageSkipNextTurnButton = getBufferedImageFromResource("/buttons/skip_turn.png");
         }
         return imageSkipNextTurnButton;
     }
@@ -312,8 +303,7 @@ public enum ImageManagerImpl implements ImageManager {
     @Override
     public Image getSkipEndTurnButtonImage() {
         if (imageSkipToEndTurnButton == null) {
-            imageSkipToEndTurnButton = getBufferedImageFromResource(
-                    PreferencesDialog.getCurrentTheme().getButtonPath("skip_to_end.png"));
+            imageSkipToEndTurnButton = getBufferedImageFromResource("/buttons/skip_to_end.png");
         }
         return imageSkipToEndTurnButton;
     }
@@ -321,8 +311,7 @@ public enum ImageManagerImpl implements ImageManager {
     @Override
     public Image getSkipMainButtonImage() {
         if (imageSkipToMainButton == null) {
-            imageSkipToMainButton = getBufferedImageFromResource(
-                    PreferencesDialog.getCurrentTheme().getButtonPath("skip_to_main.png"));
+            imageSkipToMainButton = getBufferedImageFromResource("/buttons/skip_to_main.png");
         }
         return imageSkipToMainButton;
     }
@@ -330,8 +319,7 @@ public enum ImageManagerImpl implements ImageManager {
     @Override
     public Image getSkipStackButtonImage() {
         if (imageSkipStackButton == null) {
-            imageSkipStackButton = getBufferedImageFromResource(
-                    PreferencesDialog.getCurrentTheme().getButtonPath("skip_stack.png"));
+            imageSkipStackButton = getBufferedImageFromResource("/buttons/skip_stack.png");
         }
         return imageSkipStackButton;
     }
@@ -339,8 +327,7 @@ public enum ImageManagerImpl implements ImageManager {
     @Override
     public Image getSkipEndStepBeforeYourTurnButtonImage() {
         if (imageSkipUntilEndStepBeforeYourTurnButton == null) {
-            imageSkipUntilEndStepBeforeYourTurnButton = getBufferedImageFromResource(
-                    PreferencesDialog.getCurrentTheme().getButtonPath("skip_to_previous_end.png"));
+            imageSkipUntilEndStepBeforeYourTurnButton = getBufferedImageFromResource("/buttons/skip_to_previous_end.png");
         }
         return imageSkipUntilEndStepBeforeYourTurnButton;
     }
@@ -348,8 +335,7 @@ public enum ImageManagerImpl implements ImageManager {
     @Override
     public Image getSkipYourNextTurnButtonImage() {
         if (imageSkipYourNextTurnButton == null) {
-            imageSkipYourNextTurnButton = getBufferedImageFromResource(
-                    PreferencesDialog.getCurrentTheme().getButtonPath("skip_all.png"));
+            imageSkipYourNextTurnButton = getBufferedImageFromResource("/buttons/skip_all.png");
         }
         return imageSkipYourNextTurnButton;
     }
@@ -357,8 +343,7 @@ public enum ImageManagerImpl implements ImageManager {
     @Override
     public Image getToggleRecordMacroButtonImage() {
         if (imageToggleRecordMacroButton == null) {
-            imageToggleRecordMacroButton = getBufferedImageFromResource(
-                    PreferencesDialog.getCurrentTheme().getButtonPath("toggle_macro.png"));
+            imageToggleRecordMacroButton = getBufferedImageFromResource("/buttons/toggle_macro.png");
         }
         return imageToggleRecordMacroButton;
     }

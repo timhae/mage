@@ -12,6 +12,7 @@ import mage.components.ImagePanel;
 import mage.components.ImagePanelStyle;
 import mage.interfaces.plugin.ThemePlugin;
 import net.xeoh.plugins.base.annotations.PluginImplementation;
+import net.xeoh.plugins.base.annotations.events.Init;
 import net.xeoh.plugins.base.annotations.events.PluginLoaded;
 import net.xeoh.plugins.base.annotations.meta.Author;
 import org.apache.log4j.Logger;
@@ -25,6 +26,10 @@ public class ThemePluginImpl implements ThemePlugin {
     private static BufferedImage background;
     private final List flist = new List();
     private final String BackgroundDir = "backgrounds" + File.separator;
+
+    @Init
+    public void init() {
+    }
 
     @PluginLoaded
     public void newPlugin(ThemePlugin plugin) {
@@ -87,7 +92,7 @@ public class ThemePluginImpl implements ThemePlugin {
     private BufferedImage loadbuffer_default() throws IOException {
         String filename = "/background.png";
         BufferedImage res;
-        InputStream is = this.getClass().getResourceAsStream(PreferencesDialog.getCurrentTheme().getBattleBackgroundPath());
+        InputStream is = this.getClass().getResourceAsStream(filename);
         res = ImageIO.read(is);
         return res;
     }

@@ -13,40 +13,17 @@ import java.util.Map;
 public abstract class DeckValidator implements Serializable {
 
     protected String name;
-    protected String shortName;
 
     protected Map<String, String> invalid = new HashMap<>();
 
     public DeckValidator(String name) {
-        setName(name);
-    }
-
-    public DeckValidator(String name, String shortName) {
-        setName(name, shortName);
+        this.name = name;
     }
 
     public abstract boolean validate(Deck deck);
 
     public String getName() {
         return name;
-    }
-
-    public String getShortName() {
-        return shortName;
-    }
-
-    protected void setName(String name) {
-        this.name = name;
-        this.shortName = name.contains("-") ? name.substring(name.indexOf("-") + 1).trim() : name;
-    }
-
-    protected void setName(String name, String shortName) {
-        this.name = name;
-        this.shortName = shortName;
-    }
-
-    protected void setShortName(String shortName) {
-        this.shortName = shortName;
     }
 
     public Map<String, String> getInvalid() {

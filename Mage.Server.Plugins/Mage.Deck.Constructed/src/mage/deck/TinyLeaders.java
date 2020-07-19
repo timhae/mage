@@ -22,7 +22,7 @@ public class TinyLeaders extends Constructed {
     protected List<String> bannedCommander = new ArrayList<>();
 
     public TinyLeaders() {
-        super("Tiny Leaders");
+        this("Tiny Leaders");
         for (ExpansionSet set : Sets.getInstance().values()) {
             if (set.getSetType().isEternalLegal()) {
                 setCodes.add(set.getCode());
@@ -86,6 +86,10 @@ public class TinyLeaders extends Constructed {
         bannedCommander.add("Derevi, Empyrical Tactician");
     }
 
+    public TinyLeaders(String name) {
+        super(name);
+    }
+
     @Override
     public int getDeckMinSize() {
         return 49; // commander gives from deck name
@@ -103,7 +107,6 @@ public class TinyLeaders extends Constructed {
     @Override
     public boolean validate(Deck deck) {
         boolean valid = true;
-        invalid.clear();
 
         if (deck.getCards().size() != getDeckMinSize()) {
             invalid.put("Deck", "Must contain " + getDeckMinSize() + " cards: has " + deck.getCards().size() + " cards");

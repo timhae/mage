@@ -23,7 +23,7 @@ public class FreeformCommander extends Constructed {
     private static final Map<String, Integer> pdAllowed = new HashMap<>();
 
     public FreeformCommander() {
-        super("Freeform Commander");
+        this("Freeform Commander");
         for (ExpansionSet set : Sets.getInstance().values()) {
             setCodes.add(set.getCode());
         }
@@ -34,10 +34,6 @@ public class FreeformCommander extends Constructed {
 
     public FreeformCommander(String name) {
         super(name);
-    }
-
-    public FreeformCommander(String name, String shortName) {
-        super(name, shortName);
     }
 
     @Override
@@ -53,7 +49,6 @@ public class FreeformCommander extends Constructed {
     @Override
     public boolean validate(Deck deck) {
         boolean valid = true;
-        invalid.clear();
         FilterMana colorIdentity = new FilterMana();
         Set<Card> commanders = new HashSet<>();
         Card companion = null;

@@ -201,6 +201,7 @@ public class MageFrame extends javax.swing.JFrame implements MageClient {
         config.setArchiveDetector(new TArchiveDetector("zip"));
         config.setAccessPreference(FsAccessOption.STORE, true);
         try {
+            UIManager.put("desktop", new Color(0, 0, 0, 0));
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
             //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             // stop JSplitPane from eating F6 and F8 or any other function keys
@@ -271,6 +272,7 @@ public class MageFrame extends javax.swing.JFrame implements MageClient {
 
         addTooltipContainer();
         setBackground();
+        addMageLabel();
         setAppIcon();
         MageTray.instance.install();
 
@@ -282,7 +284,9 @@ public class MageFrame extends javax.swing.JFrame implements MageClient {
                 int width = ((JComponent) e.getSource()).getWidth();
                 int height = ((JComponent) e.getSource()).getHeight();
                 SettingsManager.instance.setScreenWidthAndHeight(width, height);
-                backgroundPane.setSize(width, height);
+                if (!liteMode && !grayMode) {
+                    backgroundPane.setSize(width, height);
+                }
 
                 updateCurrentFrameSize();
 

@@ -107,7 +107,6 @@ public class HistoricalType2 extends Constructed {
         Map<String, String> leastInvalid = null;
 
         boolean valid = false;
-        invalid.clear();
 
         // first, check whether misty and batterskull are in the same deck.
         Map<String, Integer> counts = new HashMap<>();

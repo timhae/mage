@@ -27,7 +27,7 @@ public class Commander extends Constructed {
     protected boolean partnerAllowed = true;
 
     public Commander() {
-        super("Commander");
+        this("Commander");
         for (ExpansionSet set : Sets.getInstance().values()) {
             if (set.getSetType().isEternalLegal()) {
                 setCodes.add(set.getCode());
@@ -80,10 +80,6 @@ public class Commander extends Constructed {
         super(name);
     }
 
-    public Commander(String name, String shortName) {
-        super(name, shortName);
-    }
-
     @Override
     public int getDeckMinSize() {
         return 98;
@@ -97,7 +93,6 @@ public class Commander extends Constructed {
     @Override
     public boolean validate(Deck deck) {
         boolean valid = true;
-        invalid.clear();
         FilterMana colorIdentity = new FilterMana();
         Set<Card> commanders = new HashSet<>();
         Card companion = null;
