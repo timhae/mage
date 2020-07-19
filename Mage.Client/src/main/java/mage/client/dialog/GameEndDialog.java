@@ -46,20 +46,12 @@
          pnlText.setOpaque(true);
          pnlText.setBackground(new Color(240, 240, 240, 140));
 
-         Rectangle r = new Rectangle(610, 250);
-         Image image = ImageHelper.getImageFromResources(gameEndView.hasWon() ? "/game_won.jpg" : "/game_lost.jpg");
-         BufferedImage imageResult = ImageHelper.getResizedImage(BufferedImageBuilder.bufferImage(image, BufferedImage.TYPE_INT_ARGB), r);
-         ImageIcon icon = new ImageIcon(imageResult);
-         lblResultImage.setIcon(icon);
-
+         Rectangle r = new Rectangle(200, 100);
          this.lblGameInfo.setText(gameEndView.getGameInfo());
          this.lblMatchInfo.setText(gameEndView.getMatchInfo());
          this.lblAdditionalInfo.setText(gameEndView.getAdditionalInfo());
 
-         String autoSave = PreferencesDialog.getCachedValue(PreferencesDialog.KEY_GAME_LOG_AUTO_SAVE, "true");
-         if (autoSave.equals("true")) {
-             this.saveGameLog(gameEndView);
-         }
+         this.saveGameLog(gameEndView);
 
          // game duration
          txtDurationGame.setText(" " + Format.getDuration(gameEndView.getStartTime(), gameEndView.getEndTime()));

@@ -272,7 +272,6 @@ public class MageFrame extends javax.swing.JFrame implements MageClient {
 
         addTooltipContainer();
         setBackground();
-        addMageLabel();
         setAppIcon();
         MageTray.instance.install();
 
@@ -284,9 +283,7 @@ public class MageFrame extends javax.swing.JFrame implements MageClient {
                 int width = ((JComponent) e.getSource()).getWidth();
                 int height = ((JComponent) e.getSource()).getHeight();
                 SettingsManager.instance.setScreenWidthAndHeight(width, height);
-                if (!liteMode && !grayMode) {
-                    backgroundPane.setSize(width, height);
-                }
+                backgroundPane.setSize(width, height);
 
                 updateCurrentFrameSize();
 
