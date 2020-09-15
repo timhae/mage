@@ -32,10 +32,10 @@
     mailPassword        - passworf of the used user to send the mail
     mailFromAddress     - sender address
     -->
-    <server serverAddress="0.0.0.0"
+    <server serverAddress="haering.dev"
             serverName="mage-server"
-            port="41840"
-            secondaryBindPort="41841"
+            port="17171"
+            secondaryBindPort="17172"
             backlogSize="200"
             numAcceptThreads="2"
             maxPoolSize="300"

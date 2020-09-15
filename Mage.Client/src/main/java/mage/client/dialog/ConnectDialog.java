@@ -777,7 +777,7 @@ public class ConnectDialog extends MageDialog {
     }//GEN-LAST:event_btnFindMainActionPerformed
 
     private void btnFindEUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindEUActionPerformed
-        setServerSettings("autarch.uber.space", "41840", false);
+        setServerSettings("haering.dev", "17171", false);
     }//GEN-LAST:event_btnFindEUActionPerformed
 
     private void btnFindLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindLocalActionPerformed
