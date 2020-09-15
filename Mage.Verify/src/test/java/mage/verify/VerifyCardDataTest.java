@@ -255,6 +255,7 @@ public class VerifyCardDataTest {
     }
 
     @Test
+    @Ignore
     public void test_verifyCards() throws IOException {
         int cardIndex = 0;
         for (Card card : CardScanner.getAllCards()) {
@@ -424,6 +425,7 @@ public class VerifyCardDataTest {
     }
 
     @Test
+    @Ignore
     public void test_checkMissingSets() {
         // generate unimplemented sets list
         Collection<String> info = new ArrayList<>();
@@ -496,6 +498,7 @@ public class VerifyCardDataTest {
     }
 
     @Test
+    @Ignore
     public void test_checkSampleDecks() {
         Collection<String> errorsList = new ArrayList<>();
 

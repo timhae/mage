@@ -2,5 +2,8 @@
 #!nix-shell -i bash -p maven openjdk11 protobuf
 
 ./clean_dbs.sh
-./Mage.Client/deploy.sh
-./Mage.Server/deploy.sh
+pushd Mage.Client
+./deploy.sh
+popd
+pushd Mage.Server
+./deploy.sh
