@@ -54,8 +54,8 @@ public final class Main {
     private static final String fastDBModeArg = "-fastDbMode=";
     private static final String adminPasswordArg = "-adminPassword=";
 
-    private static final File pluginFolder = new File("plugins");
-    private static final File extensionFolder = new File("extensions");
+    private static final File pluginFolder = new File(System.getProperty("plugin-path"));
+    private static final File extensionFolder = new File(System.getProperty("extension-path"));
 
     public static final PluginClassLoader classLoader = new PluginClassLoader();
     private static TransporterServer server;

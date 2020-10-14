@@ -24,7 +24,7 @@ public enum ConfigSettings {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance("mage.server.util.config");
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-            config = (Config) unmarshaller.unmarshal(new File("config/config.xml"));
+            config = (Config) unmarshaller.unmarshal(new File(System.getProperty("config-path")));
         } catch (JAXBException ex) {
             logger.fatal("ConfigSettings error", ex);
         }
