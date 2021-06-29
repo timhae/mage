@@ -49,7 +49,7 @@ public interface MageServer {
     // server state methods
     ServerState getServerState() throws MageException;
 
-    List<RoomUsersView> getRoomUsers(UUID roomId) throws MageException;
+    List<mage.view.RoomUsersView> getRoomUsers(UUID roomId) throws MageException;
 
     List<MatchView> getFinishedMatches(UUID roomId) throws MageException;
 
@@ -172,7 +172,7 @@ public interface MageServer {
     boolean cheat(UUID gameId, String sessionId, UUID playerId, String cardName) throws MageException;
 
     //admin methods
-    List<UserView> getUsers(String sessionId) throws MageException;
+    List<mage.view.UserView> getUsers(String sessionId) throws MageException;
 
     void disconnectUser(String sessionId, String userSessionId) throws MageException;
 

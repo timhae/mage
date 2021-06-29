@@ -24,7 +24,7 @@ public class MageVersion implements Serializable, Comparable<MageVersion> {
     // Each update requires a strict version
     // If you disable it then server can accept multiple versions with same release number
     // Since incompatible changes are no longer monitored - it must always be true
-    private static final boolean MAGE_VERSION_RELEASE_INFO_MUST_BE_SAME = true;
+    private static final boolean MAGE_VERSION_RELEASE_INFO_MUST_BE_SAME = false;
     // build info
     public static final boolean MAGE_VERSION_SHOW_BUILD_TIME = true;
 

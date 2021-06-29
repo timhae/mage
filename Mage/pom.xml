@@ -25,7 +25,7 @@
         <dependency>
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
-            <version>3.19.3</version>
+            <version>3.21.12</version>
         </dependency>
     </dependencies>
 
@@ -55,7 +55,8 @@
 			</goals>
                         
 			<configuration>
-                <protocArtifact>com.google.protobuf:protoc:3.18.0</protocArtifact>
+                <protocCommand>protoc</protocCommand>
+                <protocArtifact>com.google.protobuf:protoc:3.21.12</protocArtifact>
 				<inputDirectories>
 					<include>${project.basedir}/src/main/proto</include>
 				</inputDirectories>
@@ -102,6 +103,8 @@
         <!-- protobuf paths -->
         <protobuf.input.directory>${project.basedir}/src/main/proto</protobuf.input.directory>
         <protobuf.output.directory>${project.build.directory}/generated-sources</protobuf.output.directory>
+    <java.version>11</java.version>
+    <maven.compiler.version>3.8.1</maven.compiler.version>
     </properties>
 
 </project>

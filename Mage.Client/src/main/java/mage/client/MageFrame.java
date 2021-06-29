@@ -52,7 +52,11 @@ import net.java.balloontip.styles.EdgedBalloonStyle;
 import net.java.truevfs.access.TArchiveDetector;
 import net.java.truevfs.access.TConfig;
 import net.java.truevfs.kernel.spec.FsAccessOption;
+import net.lingala.zip4j.ZipFile;
 import org.apache.log4j.Logger;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.mage.card.arcane.ManaSymbols;
 import org.mage.card.arcane.SvgUtils;
 import org.mage.plugins.card.images.DownloadPicturesService;
@@ -80,6 +84,12 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.prefs.Preferences;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.List;
+import java.io.FileOutputStream;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
 
 /**
  * @author BetaSteward_at_googlemail.com, JayDi85
@@ -111,6 +121,7 @@ public class MageFrame extends javax.swing.JFrame implements MageClient {
     private JLabel title;
     private Rectangle titleRectangle;
     private static final MageVersion VERSION = new MageVersion(MageFrame.class);
+    private static String remoteVersion = "";
     private Connection currentConnection;
     private static MagePane activeFrame;
     private static boolean liteMode = false;
@@ -863,7 +874,9 @@ public class MageFrame extends javax.swing.JFrame implements MageClient {
         btnPreferences = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JToolBar.Separator();
         btnConnect = new javax.swing.JButton();
+        jSeparator0 = new javax.swing.JToolBar.Separator();
         jSeparator1 = new javax.swing.JToolBar.Separator();
+        btnUpdate = new javax.swing.JButton();
         btnDeckEditor = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
         btnCollectionViewer = new javax.swing.JButton();
@@ -931,6 +944,18 @@ public class MageFrame extends javax.swing.JFrame implements MageClient {
             }
         });
         mageToolbar.add(btnConnect);
+        mageToolbar.add(jSeparator0);
+
+        btnUpdate.setText("Update XMage");
+        btnUpdate.setToolTipText("Update the XMage Client Application");
+        btnUpdate.setFocusable(false);
+        btnUpdate.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+        mageToolbar.add(btnUpdate);
         mageToolbar.add(jSeparator1);
 
         btnDeckEditor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/deck_editor.png"))); // NOI18N
@@ -1053,6 +1078,54 @@ public class MageFrame extends javax.swing.JFrame implements MageClient {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        try {
+            // get current version, something like "1.4.50-V2 (build: 2023-01-04 11:07)"
+            String versionString = VERSION.toString();
+            // ignore time, only filter for date since it is easier and causes less mismatches
+            Pattern pattern = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
+            Matcher matcher = pattern.matcher(versionString);
+            matcher.find();
+            String currentVersion = matcher.group();
+            System.out.println("currentVersion " + currentVersion);
+
+            // check website for versions
+            Document doc = Jsoup.connect("https://haering.dev/xmage").get();
+            Elements links = doc.select("a");
+            List<String> remoteVersions = new ArrayList<>();
+
+            // iterate over remote versions and filter version string
+            links.forEach(el -> {
+                Matcher matcherRemote = pattern.matcher(el.text());
+                if (matcherRemote.find()) {
+                    remoteVersions.add(matcherRemote.group());
+                }
+            });
+
+            // find latest remote version
+            Collections.sort(remoteVersions);
+            remoteVersion = remoteVersions.get(remoteVersions.size() - 1);
+            System.out.println("remoteVersion " + remoteVersion);
+
+            // prompt for update
+            if (remoteVersion.compareTo(currentVersion) != 0) {
+                updateClient();
+            } else {
+                showMessage("You are already using the latest version");
+            }
+        } catch (IOException e) {
+            System.out.println("Error " + e.getMessage());
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    public void updateClient() {
+        UserRequestMessage message = new UserRequestMessage("Update Application", "Do you want to update the Application?");
+        message.setButton1("No", null);
+        message.setButton2("Yes", PlayerAction.CLIENT_DOWNLOAD_UPDATE);
+        showUserRequestDialog(message);
+    }
 
     private void btnDeckEditorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeckEditorActionPerformed
         showDeckEditor(DeckEditorMode.FREE_BUILDING, null, null, 0);
@@ -1373,6 +1446,7 @@ public class MageFrame extends javax.swing.JFrame implements MageClient {
     private javax.swing.JButton btnCollectionViewer;
     private javax.swing.JButton btnConnect;
     private javax.swing.JButton btnDebug;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnDeckEditor;
     private javax.swing.JButton btnImages;
     private javax.swing.JButton btnPreferences;
@@ -1380,6 +1454,7 @@ public class MageFrame extends javax.swing.JFrame implements MageClient {
     private javax.swing.JButton btnSymbols;
     private static javax.swing.JDesktopPane desktopPane;
     private javax.swing.JLabel jMemUsageLabel;
+    private javax.swing.JToolBar.Separator jSeparator0;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator4;
@@ -1524,8 +1599,35 @@ public class MageFrame extends javax.swing.JFrame implements MageClient {
         callbackClient.processCallback(callback);
     }
 
+    public void downloadUpdate() {
+        String pwd = System.getProperty("user.dir");
+        System.out.println("updating to " + remoteVersion + " in " + pwd);
+        try {
+            // download file
+            String zipFileName = "mage-client-" + remoteVersion + ".zip";
+            URL url = new URL("https://haering.dev/xmage/" + zipFileName);
+            ReadableByteChannel rbc = Channels.newChannel(url.openStream());
+            FileOutputStream fos = new FileOutputStream(pwd + "/" + zipFileName);
+            fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+            fos.close();
+            rbc.close();
+
+            // unzip
+            ZipFile z = new ZipFile(zipFileName);
+            z.extractAll(pwd);
+            z.close();
+            showMessage("Update successful, please restart the Client");
+        } catch (IOException e) {
+            System.out.println("Error " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
     public void sendUserReplay(PlayerAction playerAction, UserRequestMessage userRequestMessage) {
         switch (playerAction) {
+            case CLIENT_DOWNLOAD_UPDATE:
+                downloadUpdate();
+                break;
             case CLIENT_DOWNLOAD_SYMBOLS:
                 Plugins.instance.downloadSymbols();
                 break;

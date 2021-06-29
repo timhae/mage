@@ -97,7 +97,7 @@ public final class Constants {
     public static final int AUTO_TARGET_ALL          = 2;
 
     public interface IO {
-        String DEFAULT_IMAGES_DIR = "plugins" + File.separator + "images" + File.separator;
+        String DEFAULT_IMAGES_DIR = "." + File.separator + ".." + File.separator + "images" + File.separator;
     }
 
     public enum DeckEditorMode {
