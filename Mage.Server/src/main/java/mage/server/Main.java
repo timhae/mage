@@ -60,8 +60,8 @@ public final class Main {
      */
     private static final String configPathProp = "xmage.config.path";
 
-    private static final File pluginFolder = new File("plugins");
-    private static final File extensionFolder = new File("extensions");
+    private static final File pluginFolder = new File(System.getProperty("plugin-path"));
+    private static final File extensionFolder = new File(System.getProperty("extension-path"));
     private static final String defaultConfigPath = Paths.get("config", "config.xml").toString();
 
     public static final PluginClassLoader classLoader = new PluginClassLoader();
@@ -97,8 +97,7 @@ public final class Main {
             }
         }
 
-        final String configPath = Optional.ofNullable(System.getProperty(configPathProp))
-                .orElse(defaultConfigPath);
+        final String configPath = System.getProperty("config-path");
 
         logger.info(String.format("Reading configuration from path=%s", configPath));
         final ConfigWrapper config = new ConfigWrapper(ConfigFactory.loadFromFile(configPath));

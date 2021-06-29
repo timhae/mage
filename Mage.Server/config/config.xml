@@ -36,17 +36,17 @@
     mailPassword        - passworf of the used user to send the mail
     mailFromAddress     - sender address
     -->
-    <server serverAddress="0.0.0.0"
+    <server serverAddress="haering.dev"
             serverName="mage-server"
             port="17171"
-            secondaryBindPort="17179"
+            secondaryBindPort="17172"
             backlogSize="200"
             numAcceptThreads="2"
             maxPoolSize="300"
             leasePeriod="5000"
             socketWriteTimeout="10000"
             maxGameThreads="10"
-            maxSecondsIdle="300"
+            maxSecondsIdle="6000"
             minUserNameLength="3"
             maxUserNameLength="14"
             invalidUserNamePattern="[^a-z0-9_]"

@@ -238,9 +238,6 @@ public class ConnectDialog extends MageDialog {
         panelFast = new javax.swing.JPanel();
         btnFindMain = new javax.swing.JButton();
         btnFindLocal = new javax.swing.JButton();
-        btnFindBeta = new javax.swing.JButton();
-        btnFindUs = new javax.swing.JButton();
-        btnFindOther = new javax.swing.JButton();
         btnFindEU = new javax.swing.JButton();
         panelServer = new javax.swing.JPanel();
         txtServer = new javax.swing.JTextField();
@@ -381,42 +378,8 @@ public class ConnectDialog extends MageDialog {
             }
         });
 
-        btnFindBeta.setText("BETA, AI");
-        btnFindBeta.setToolTipText("Connect to BETA server, AI enabled (use any username without registration)");
-        btnFindBeta.setAlignmentY(0.0F);
-        btnFindBeta.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnFindBeta.setMargin(new java.awt.Insets(2, 2, 2, 2));
-        btnFindBeta.setPreferredSize(new java.awt.Dimension(23, 23));
-        btnFindBeta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFindBetaActionPerformed(evt);
-            }
-        });
-
-        btnFindUs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flags/us.png"))); // NOI18N
-        btnFindUs.setText("US");
-        btnFindUs.setToolTipText("Connect to us.xmage.today (USA, use any username without registration)");
-        btnFindUs.setAlignmentY(0.0F);
-        btnFindUs.setMargin(new java.awt.Insets(2, 2, 2, 2));
-        btnFindUs.setPreferredSize(new java.awt.Dimension(23, 23));
-        btnFindUs.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFindUsActionPerformed(evt);
-            }
-        });
-
-        btnFindOther.setText("Other...");
-        btnFindOther.setToolTipText("Choose server from full servers list");
-        btnFindOther.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnFindOther.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFindOtherActionPerformed(evt);
-            }
-        });
-
-        btnFindEU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flags/europeanunion.png"))); // NOI18N
-        btnFindEU.setText("EU");
-        btnFindEU.setToolTipText("Connect to eu.xmage.today (second Europe server, use any username without registration)");
+        btnFindEU.setText("TIM");
+        btnFindEU.setToolTipText("Tim's Server");
         btnFindEU.setAlignmentY(0.0F);
         btnFindEU.setMargin(new java.awt.Insets(2, 2, 2, 2));
         btnFindEU.setMaximumSize(new java.awt.Dimension(42, 23));
@@ -438,13 +401,8 @@ public class ConnectDialog extends MageDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnFindEU, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnFindUs, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnFindBeta, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnFindLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnFindOther, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         panelFastLayout.setVerticalGroup(
@@ -454,9 +412,6 @@ public class ConnectDialog extends MageDialog {
                 .addGroup(panelFastLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnFindMain, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnFindLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFindUs, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFindBeta, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFindOther, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnFindEU, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0))
         );
@@ -825,24 +780,12 @@ public class ConnectDialog extends MageDialog {
     }//GEN-LAST:event_btnFindMainActionPerformed
 
     private void btnFindEUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindEUActionPerformed
-        setServerSettings("eu.xmage.today", "17171", false);
+        setServerSettings("haering.dev", "17171", false);
     }//GEN-LAST:event_btnFindEUActionPerformed
-
-    private void btnFindUsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindUsActionPerformed
-        setServerSettings("us.xmage.today", "17171", false);
-    }//GEN-LAST:event_btnFindUsActionPerformed
-
-    private void btnFindBetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindBetaActionPerformed
-        setServerSettings("beta.xmage.today", "17171", false);
-    }//GEN-LAST:event_btnFindBetaActionPerformed
 
     private void btnFindLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindLocalActionPerformed
         setServerSettings("localhost", "17171", false);
     }//GEN-LAST:event_btnFindLocalActionPerformed
-
-    private void btnFindOtherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindOtherActionPerformed
-        chooseAndSetServerSettingsFromOther();
-    }//GEN-LAST:event_btnFindOtherActionPerformed
 
     private void doFastFlagSearch() {
         Choice choice = new ChoiceImpl(false);
@@ -891,12 +834,9 @@ public class ConnectDialog extends MageDialog {
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnCheckStatus;
     private javax.swing.JButton btnConnect;
-    private javax.swing.JButton btnFindBeta;
     private javax.swing.JButton btnFindEU;
     private javax.swing.JButton btnFindLocal;
     private javax.swing.JButton btnFindMain;
-    private javax.swing.JButton btnFindOther;
-    private javax.swing.JButton btnFindUs;
     private javax.swing.JButton btnFlagSearch;
     private javax.swing.JButton btnForgotPassword;
     private javax.swing.JButton btnRegister;

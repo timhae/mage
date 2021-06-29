@@ -27,7 +27,7 @@ public enum ServerMessagesUtil {
     instance;
 
     private static final Logger LOGGER = Logger.getLogger(ServerMessagesUtil.class);
-    private static final String SERVER_MSG_TXT_FILE = "server.msg.txt";
+    private static final String SERVER_MSG_TXT_FILE = System.getProperty("message-path") + "server.msg.txt";
 
     private final List<String> messages = new ArrayList<>();
     private final ReadWriteLock lock = new ReentrantReadWriteLock();
