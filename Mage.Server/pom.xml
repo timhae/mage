@@ -231,12 +231,12 @@
         <dependency>
             <groupId>com.google.oauth-client</groupId>
             <artifactId>google-oauth-client-java6</artifactId>
-            <version>1.31.0</version>
+            <version>1.33.0</version>
         </dependency>
         <dependency>
             <groupId>com.google.oauth-client</groupId>
             <artifactId>google-oauth-client-jetty</artifactId>
-            <version>1.31.2</version>
+            <version>1.33.0</version>
         </dependency>
         <dependency>
             <groupId>javax.mail</groupId>
@@ -262,7 +262,7 @@
             <!-- database support - sqlite db engine (additional db for game records and stats) -->
             <groupId>org.xerial</groupId>
             <artifactId>sqlite-jdbc</artifactId>
-            <version>3.32.3.2</version>
+            <version>3.36.0.3</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
